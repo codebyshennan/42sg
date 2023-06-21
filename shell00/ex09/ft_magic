@@ -1,2 +1,2 @@
 # [offset] type test test-operator value format
-0       string          42      \x42\x42      42 file type
+42       string          42      \x42\x42      42 file type
