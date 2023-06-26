@@ -1,22 +1,34 @@
-void ft_putchar(char c)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shwong <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/26 22:52:26 by shwong            #+#    #+#             */
+/*   Updated: 2023/06/26 22:53:07 by shwong           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+void	ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
 
-void ft_putnbr_base(int nbr, char *base)
+void	ft_putnbr_base(int nbr, char *base)
 {
-    int base_len;
+	int	base_len;
 
-    base_len = 0;
-    while (base[base_len] != '\0')
-    {
-        base_len++;
-    }
-    if (nbr < 0)
-    {
-        ft_putchar('-');
-        nbr *= -1;
-    }
+	base_len = 0;
+	while (base[base_len] != '\0')
+	{
+		base_len++;
+	}
+	if (nbr < 0)
+	{
+		ft_putchar('-');
+		nbr *= -1;
+	}
     if (nbr >= base_len)
     {
         ft_putnbr_base(nbr / base_len, base);
