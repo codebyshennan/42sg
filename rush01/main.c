@@ -4,36 +4,6 @@
 #include <stdio.h>
 #include "utils.h"
 
-int main(int argc, char **argv)
-{
-    // if no arguments were passed, exit
-    if (argc < 2)
-    {
-        printf("Error.\n");
-        return (1);
-    }
-
-    char *input;
-    char *endptr;
-    int count;
-    int half_count;
-    int *cols;
-    int *rows;
-
-    input = argv[1];
-    // count how many numbers are in the string
-    count = get_count(input);
-    half_count = count / 2;
-
-    cols = (int *)malloc(sizeof(int) * half_count);
-    rows = (int *)malloc(sizeof(int) * half_count);
-    split_into_cols_rows(cols, rows, input, count, half_count, endptr);
-    rush_01(cols, rows, half_count);
-    free(cols);
-    free(rows);
-    return 0;
-}
-
 int get_count(char *input)
 {
     int count;
@@ -79,4 +49,35 @@ void split_into_cols_rows(int *cols, int *rows, char *input, int count, int half
             input++;
         }
     }
+}
+
+
+int main(int argc, char **argv)
+{
+    // if no arguments were passed, exit
+    if (argc < 2)
+    {
+        printf("Error.\n");
+        return (1);
+    }
+
+    char *input;
+    char *endptr;
+    int count;
+    int half_count;
+    int *cols;
+    int *rows;
+
+    input = argv[1];
+    // count how many numbers are in the string
+    count = get_count(input);
+    half_count = count / 2;
+
+    cols = (int *)malloc(sizeof(int) * half_count);
+    rows = (int *)malloc(sizeof(int) * half_count);
+    split_into_cols_rows(cols, rows, input, count, half_count, endptr);
+    rush_01(cols, rows, half_count / 2);
+    free(cols);
+    free(rows);
+    return 0;
 }
