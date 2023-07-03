@@ -1,15 +1,13 @@
 #include "utils.h"
 
-int rush_01(int *cols, int *rows)
+int rush_01(int *cols, int *rows, int r)
 {
-    // TODO: rush_01 accepts the size of the array as a parameter (e.g. n)
     // initialise data to be the range of numbers from 1 to n
     int count;
     int range;
     int permutations;
 
-    // TODO: change range to the size of the array (e.g. n)
-    range = 4;
+    range = r;
     count = 0;
     int *data = (int *)malloc(sizeof(int) * range);
     while (count < range)
@@ -25,7 +23,11 @@ int rush_01(int *cols, int *rows)
     int index = 0;
     permute(data, 0, 3, perms, &index);
 
+    /* int r = 4
+
+    */
     int flag, a = 0;
+    // int arr[0]*r //generates an array of r size
     int arr[4] = {0, 0, 0, 0};
     while (a < permutations)
     {
