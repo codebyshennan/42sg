@@ -10,63 +10,71 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+	Create a fn that displays a string of chars onscreen. If this string 
+	
+	contains characters that aren't printable, they'll have to be displayed in
+	the shape of hexadecimals (lowercase), preceded by a backslash.
+
+	Strategy:
+	1. convert non-printable characters into hexadecimal representation
+	e.g. \n == 0A in hexadecimal
+*/
+#include <unistd.h>
+
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+void	convert_to_hex(int nbr)
 {
-	int	base_len;
+	int		base_len;
+	char	*base;
 
-	base_len = 0;
-	while (base[base_len] != '\0')
-	{
-		base_len++;
-	}
+	base_len = 16;
+	base = "0123456789abcdef";
 	if (nbr < 0)
 	{
 		ft_putchar('-');
 		nbr *= -1;
 	}
-    if (nbr >= base_len)
-    {
-        ft_putnbr_base(nbr / base_len, base);
-        ft_putnbr_base(nbr % base_len, base);
-    }
-    else
-    {
-        ft_putchar(base[nbr]);
-    }
+	if (nbr >= base_len)
+	{
+		convert_to_hex(nbr / base_len);
+		convert_to_hex(nbr % base_len);
+	}
+	else
+	{
+		ft_putchar(base[nbr]);
+	}
 }
 
-void ft_putstr_non_printable(char *str)
+void	ft_putstr_non_printable(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i] != '\0')
-    {
-        // if (!(str[i] >= 32 && str[i] <= 126))
-        if (str[i] < 32 || str[i] > 126)
-        {
-            // if (str[i] >= 0 && str[i] <= 15)
-            if (str[i] < 16)
-            {
-                ft_putchar('\\');
-                ft_putchar('0');
-                ft_putnbr_base(str[i], "0123456789abcdef");
-            }
-            else
-            {
-                ft_putchar('\\');
-                ft_putnbr_base(str[i], "0123456789abcdef");
-            }
-        }
-        else
-        {
-            ft_putchar(str[i]);
-        }
-        i++;
-    }
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] < 32 || str[i] > 126)
+		{
+			if (str[i] < 16)
+			{
+				ft_putchar('\\');
+				ft_putchar('0');
+				convert_to_hex(str[i]);
+			}
+			else
+			{
+				ft_putchar('\\');
+				convert_to_hex(str[i]);
+			}
+		}
+		else
+		{
+			ft_putchar(str[i]);
+		}
+		i++;
+	}
 }

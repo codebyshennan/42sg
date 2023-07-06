@@ -9,49 +9,36 @@
 /*   Updated: 2023/06/22 22:33:43 by shwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
+#include <limits.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
 void	ft_putnbr(int nb)
 {
-	int	length;
-	int	is_negative;
-	int	start;
-	int	end;
-	char tmp;
-	char	buffer[20];
-
-	length = 0;
-	is_negative = 0;
-	if (nb == 0)
+	if (nb == INT_MIN)
 	{
-		buffer[length++] = '0';
+		ft_putchar('-');
+		ft_putchar('2');
+		ft_putnbr(147483648);
+	}
+	else if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+		ft_putnbr(nb);
+	}
+	else if (nb > 9)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
 	}
 	else
 	{
-		if (nb < 0)
-		{
-			is_negative = 1;
-			nb = -nb;
-		}
-		while (nb != 0)
-		{
-			buffer[length++] = '0' + (nb % 10);
-			nb /= 10;
-		}
-		if (is_negative)
-		{
-			buffer[length++] = '-';
-		}
-		start = 0;
-		end = length - 1;
-		while (start < end)
-		{
-			tmp = buffer[start];
-			buffer[start] = buffer[end];
-			buffer[end] = tmp;
-			start++;
-			end--;
-		}
+		ft_putchar(nb + 48);
 	}
-	write(1, buffer, length);
 }

@@ -18,37 +18,25 @@
 
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	write (1, &c, 1);
 }
 
-int	count(char **argv)
-{
-	int	count;
-
-	count = 1;
-	while (*argv[count] != '\0')
-	{
-		count++;
-	}
-	return (count);
-}
-
-int	main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
 	int	i;
+	int	j;
 
-	if (argc > 1)
+	i = argc - 1;
+	while (i > 0)
 	{
-		i = count(argv);
-		while (i >= 1)
+		j = 0;
+		while (argv[i][j] != '\0' && argc)
 		{
-			while (*argv[i] != '\0')
-			{
-				ft_putchar(*argv[i]);
-				ft_putchar('\n');
-				i--;
-			}
+			ft_putchar(argv[i][j]);
+			j++;
 		}
+		ft_putchar('\n');
+		i--;
 	}
 	return (0);
 }

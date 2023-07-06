@@ -12,9 +12,7 @@
 
 #include <unistd.h>
 
-void	ft_print_combn(int n)
-{
-	/* the main idea is that:
+/* the main idea is that:
 		n = 2, start with 0, 1
 		n = 3, start with 0, 1, 2
 		n, start with n-1, n-2 .. 0
@@ -23,6 +21,6 @@ void	ft_print_combn(int n)
 		needs to be unique
 	*/
 
-	/* you should then 
-
+void	ft_print_combn(int n)
+{
 }

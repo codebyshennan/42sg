@@ -31,7 +31,7 @@ int	ft_atoi(char *str)
 			|| str[i] == '-') && str[i] != '\0')
 	{
 		if (str[i] == '-')
-			sign *= -1;
+			sign = -1;
 		i++;
 	}
 	while (str[i] != '\0')
